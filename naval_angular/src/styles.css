@@ -9,6 +9,7 @@
   --secondary-color: #3C9EA3;
   --dark-color: #141412;
   --darker-color: #121210;
+  --gray-color: #6b7280;
   --white: #FFF;
 }
 body {
@@ -17,6 +18,13 @@ body {
   height: 100vh;
   width: 100vw;
   -webkit-font-smoothing: antialiased;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+  color: var(--primary-color);
 }
 
 button, input, textarea, body {

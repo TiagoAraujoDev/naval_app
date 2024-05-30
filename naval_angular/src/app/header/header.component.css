@@ -4,6 +4,39 @@ header {
   padding: 24px 32px;
 }
 
-header  img {
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header > div > img {
   width: 200px;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+}
+
+input:focus {
+  outline: none;
+}
+
+button > span {
+  cursor: pointer;
+}
+
+button > span:hover {
+  opacity: 0.8;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
 }
