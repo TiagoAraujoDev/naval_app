@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #f38e36;
+  --secondary-color: #3C9EA3;
+  --dark-color: #141412;
+  --darker-color: #121210;
+  --white: #FFF;
+}
+body {
+  background-color: var(--dark-color);
+  color: var(--white);
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, textarea, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}

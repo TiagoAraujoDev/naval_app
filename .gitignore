@@ -3,3 +3,6 @@ naval_express/node_modules
 
 naval_angular/.env
 naval_express/.env
+
+naval_angular/.angular
+naval_angular/.vscode

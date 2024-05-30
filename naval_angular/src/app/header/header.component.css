@@ -1,0 +1,9 @@
+header {
+  background-color: var(--darker-color);
+  color: var(--white);
+  padding: 24px 32px;
+}
+
+header  img {
+  width: 200px;
+}
