@@ -6,6 +6,10 @@ class UserController {
     return res.status(200).json(users);
   }
 
+  async test(_req, res) {
+    return res.status(200).json({morse: ". . _ = works"})
+  }
+
   async create(req, res) {
     try {
       const { username, fullname, password, phone } = req.body;
