@@ -1,11 +1,9 @@
 import "dotenv/config";
 import knex from "knex";
-// import knexConfig from "../../knexfile.js";
 
 const connetcDatabase = () => {
-  // const _knex = knex(knexConfig["development"]);
   const _knex = knex({
-    client: 'pg',
+    client: "pg",
     connection: {
       connectionString: process.env.PG_CONNECTION_STRING,
       host: process.env.DB_HOST,
@@ -15,8 +13,8 @@ const connetcDatabase = () => {
       password: process.env.DB_PASSWORD,
       ssl: process.env.PGSSL ? { rejectUnauthorized: false } : false,
     },
-  })
-  return _knex
+  });
+  return _knex;
 };
 
 const db = connetcDatabase();

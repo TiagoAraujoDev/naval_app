@@ -17,4 +17,4 @@ app.use("*", (_req, res, _next) => {
   return res.status(404).json({ menssage: "Not found!" });
 });
 
-export const handler = serverless(app)
+export const handler = serverless(app);
