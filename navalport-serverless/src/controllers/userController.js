@@ -1,21 +1,25 @@
-const { knex } = require("../database/knex");
+import { db } from "../database/knex.js";
 
 class UserController {
   async fetchUsers(_req, res) {
-    const users = await knex.select("id", "username", "fullname", "phone").from("public.users");
-    return res.status(200).json(users);
+    try {
+      const users = await db.select("id", "username", "fullname", "phone").from("public.users");
+      return res.status(200).json(users);
+    } catch (e) {
+      return res.status(500).json({ message: "Internal error", error: e.message });
+    }
   }
 
   async test(_req, res) {
-    return res.status(200).json({morse: ". . _ = works"})
+    return res.status(200).json({ test: "It works!"})
   }
 
   async create(req, res) {
     try {
       const { username, fullname, password, phone } = req.body;
-      const [user] = await knex.where({ username: username }).from("public.users").select("username");
+      const [user] = await db.where({ username: username }).from("public.users").select("username");
       if (user && username === user.username) return res.status(409).json({ message: "Username already taken!" });
-      await knex("public.users").insert({ username, fullname, password, phone });
+      await db("public.users").insert({ username, fullname, password, phone });
       return res.status(201).send();
     } catch (e) {
       return res.status(500).json({ message: "Internal error", error: e.message });
@@ -25,7 +29,7 @@ class UserController {
   async fetchUser(req, res) {
     try {
       const { id } = req.params;
-      const [user] = await knex.where({ id: parseInt(id) }).from("public.users");
+      const [user] = await db.where({ id: parseInt(id) }).from("public.users");
       if (!user) return res.status(400).json({ message: "No user found!" });
       return res.status(200).json(user);
     } catch(e) {
@@ -37,13 +41,13 @@ class UserController {
     try {
       const { username, phone, password } = req.body;
       const { id } = req.params;
-      const [user] = await knex.where({ id: parseInt(id) }).from("public.users");
+      const [user] = await db.where({ id: parseInt(id) }).from("public.users");
       if (!user) return res.status(400).json({ message: "No user found!" });
       const updateData = {};
       if (username !== undefined) updateData.username = username;
       if (phone !== undefined) updateData.phone = phone;
       if (password !== undefined) updateData.password = password;
-      await knex("public.users").where({ id: user.id }).update(updateData);
+      await db("public.users").where({ id: user.id }).update(updateData);
       return res.status(204).send();
     } catch(e) {
       return res.status(500).json({ message: "Internal error", error: e.message });
@@ -53,9 +57,9 @@ class UserController {
   async delete(req, res) {
     try {
       const { id } = req.params;
-      const [user] = await knex.where({ id: parseInt(id) }).from("public.users");
+      const [user] = await db.where({ id: parseInt(id) }).from("public.users");
       if (!user) return res.status(400).json({ message: "No user found!" });
-      await knex("public.users").where({id: user.id}).del();
+      await db("public.users").where({id: user.id}).del();
       return res.status(204).send();
     } catch(e) {
       return res.status(500).json({ message: "Internal error", error: e.message });
@@ -64,4 +68,4 @@ class UserController {
   
 };
 
-module.exports = UserController;
+export default UserController;
