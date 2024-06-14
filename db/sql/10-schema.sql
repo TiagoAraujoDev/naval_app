@@ -1,3 +1,3 @@
 -- Create schema
-DROP SCHEMA IF EXISTS auth;
+DROP SCHEMA IF EXISTS auth CASCADE;
 CREATE SCHEMA auth;
