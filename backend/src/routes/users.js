@@ -12,4 +12,4 @@ userRoute.get("/:id", userController.fetchUser);
 userRoute.patch("/:id", userController.update);
 userRoute.delete("/:id", userController.delete);
 
-export default userRoute;
+export { userRoute };
